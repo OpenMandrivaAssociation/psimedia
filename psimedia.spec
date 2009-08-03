@@ -1,6 +1,6 @@
 %define name psimedia
 %define version 1.0.3
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary:	Abstraction layer for providing audio and video RTP Services
 Name:		%{name}
@@ -27,6 +27,9 @@ GStreamer
 Summary:	Audio and Video plugin for Psi
 Group:		Networking/Instant messaging
 Requires:	psi => 0.13-0.rc1
+# required, or we see the message :
+# hmac support missing for voice calls, install qca-ossl
+Requires:   qca-openssl
 %description -n psi-plugin-media
 This plugin provides audio and video RTP services to PSI.
 This implementation is based on GStreamer.
