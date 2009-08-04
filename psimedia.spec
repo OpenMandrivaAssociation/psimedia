@@ -1,6 +1,6 @@
 %define name psimedia
 %define version 1.0.3
-%define release %mkrel 3
+%define release %mkrel 4
 
 Summary:	Abstraction layer for providing audio and video RTP Services
 Name:		%{name}
@@ -29,6 +29,8 @@ Group:		Networking/Instant messaging
 # required, or we see the message :
 # hmac support missing for voice calls, install qca-ossl
 Requires:   qca2-openssl
+# Needed since it's not part of gstreamer0.10-plugins-good
+Requires:   gstreamer0.10-speex
 %description -n psi-plugin-media
 This plugin provides audio and video RTP services to PSI.
 This implementation is based on GStreamer.
