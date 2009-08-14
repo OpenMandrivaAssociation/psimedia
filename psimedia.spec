@@ -16,29 +16,25 @@ BuildRequires:	libgstreamer-plugins-base-devel
 BuildRequires:	liboil-devel
 BuildRequires:	speex-devel
 
-
 %description
 PsiMedia is a thick abstraction layer for providing audio and
 video RTP services to Psi-like IM clients.  The implementation is based on
 GStreamer
 
-
 %package -n psi-plugin-media
 Summary:	Audio and Video plugin for Psi
 Group:		Networking/Instant messaging
-# required, or we see the message :
-# hmac support missing for voice calls, install qca-ossl
-Requires:   qca2-openssl
 # Needed since it's not part of gstreamer0.10-plugins-good
 Requires:   gstreamer0.10-speex
+
 %description -n psi-plugin-media
 This plugin provides audio and video RTP services to PSI.
 This implementation is based on GStreamer.
 
 %files -n psi-plugin-media
 %defattr(-,root,root,-)
-%{_libdir}/psi/plugins/libgstprovider.so
 %doc COPYING README TODO
+%{_libdir}/psi/plugins/libgstprovider.so
 
 %prep
 %setup -q
@@ -50,9 +46,8 @@ This implementation is based on GStreamer.
 %install
 %__rm -rf %{buildroot}
 # We only need libgstprovider.so in order to enable audio RTP Services for psi
-mkdir -p %{buildroot}/%{_libdir}/psi/plugins
-mkdir -p %{buildroor}/%{_datadir}/doc/psi-plugin-media
-cp gstprovider/libgstprovider.so  %{buildroot}/%{_libdir}/psi/plugins/
-cp COPYING %{buildroor}/%{_datadir}/doc/psi-plugin-media
+%__mkdir -p %{buildroot}/%{_libdir}/psi/plugins
+%__cp gstprovider/libgstprovider.so  %{buildroot}/%{_libdir}/psi/plugins/
 
-
+%clean
+%__rm -rf %{buildroot}
