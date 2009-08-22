@@ -26,7 +26,7 @@ Summary:	Audio and Video plugin for Psi
 Group:		Networking/Instant messaging
 # Needed since it's not part of gstreamer0.10-plugins-good
 Requires:   gstreamer0.10-speex
-Requires:   gstreamer0.10-good
+Requires:   gstreamer0.10-plugins-good
 %description -n psi-plugin-media
 This plugin provides audio and video RTP services to PSI.
 This implementation is based on GStreamer.
