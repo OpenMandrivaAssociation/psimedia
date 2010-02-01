@@ -1,6 +1,6 @@
 %define name psimedia
 %define version 1.0.3
-%define release %mkrel 6
+%define release %mkrel 7
 
 Summary:	Abstraction layer for providing audio and video RTP Services
 Name:		%{name}
@@ -35,6 +35,8 @@ This implementation is based on GStreamer.
 %defattr(-,root,root,-)
 %doc COPYING README TODO
 %{_libdir}/psi/plugins/libgstprovider.so
+
+#----------------------------------------------------------------------------
 
 %prep
 %setup -q
