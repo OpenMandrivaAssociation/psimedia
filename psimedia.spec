@@ -1,6 +1,6 @@
 %define name psimedia
 %define version 1.0.3
-%define release %mkrel 8
+%define release %mkrel 9
 
 Summary:	Abstraction layer for providing audio and video RTP Services
 Name:		%{name}
@@ -10,6 +10,8 @@ Group:		Networking/Instant messaging
 Release:	%{release}
 Source:		http://delta.affinix.com/download/psimedia/%{name}-%{version}.tar.bz2
 URL:		http://delta.affinix.com/psimedia/
+Patch0:         psimedia-1.0.3-fedora-remove-v4l.patch
+Patch1:         psimedia-1.0.3-gentoo-drop-v4lsrc-gst-plugin.patch
 BuildRoot:	%_tmppath/%name-buildroot
 BuildRequires:	qt4-devel
 BuildRequires:	libgstreamer-plugins-base-devel
@@ -40,6 +42,8 @@ This implementation is based on GStreamer.
 
 %prep
 %setup -q
+%patch0 -p1
+%patch1 -p0
 
 %build
 ./configure
