@@ -8,14 +8,13 @@ Version:	%{version}
 License:	GPLv2+
 Group:		Networking/Instant messaging 
 Release:	%{release}
-Source:		http://delta.affinix.com/download/psimedia/%{name}-%{version}.tar.bz2
+Source0:	http://delta.affinix.com/download/psimedia/%{name}-%{version}.tar.bz2
 URL:		http://delta.affinix.com/psimedia/
 Patch0:         psimedia-1.0.3-fedora-remove-v4l.patch
 Patch1:         psimedia-1.0.3-gentoo-drop-v4lsrc-gst-plugin.patch
-BuildRoot:	%_tmppath/%name-buildroot
 BuildRequires:	qt4-devel
 BuildRequires:	libgstreamer-plugins-base-devel
-BuildRequires:	liboil-devel
+BuildRequires:	oil-devel
 BuildRequires:	speex-devel
 
 %description
@@ -34,7 +33,6 @@ This plugin provides audio and video RTP services to PSI.
 This implementation is based on GStreamer.
 
 %files -n psi-plugin-media
-%defattr(-,root,root,-)
 %doc COPYING README TODO
 %{_libdir}/psi/plugins/libgstprovider.so
 
@@ -46,14 +44,16 @@ This implementation is based on GStreamer.
 %patch1 -p0
 
 %build
+sed -i 's|glib/gmacros.h|glib.h|g' gstprovider/gstelements/static/gstelements.h
+sed -i 's|glib/gthread.h|glib.h|g' gstprovider/gstcustomelements/gstcustomelements.h
+sed -i 's|glib/gmain.h|glib.h|g' gstprovider/gstthread.h
+sed -i 's|glib/gmain.h|glib.h|g' gstprovider/rwcontrol.h
+
 ./configure
+
 %make
 
 %install
-%__rm -rf %{buildroot}
 # We only need libgstprovider.so in order to enable audio RTP Services for psi
 %__mkdir -p %{buildroot}/%{_libdir}/psi/plugins
 %__cp gstprovider/libgstprovider.so  %{buildroot}/%{_libdir}/psi/plugins/
-
-%clean
-%__rm -rf %{buildroot}
