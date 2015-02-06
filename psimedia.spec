@@ -1,6 +1,6 @@
 %define name psimedia
 %define version 1.0.3
-%define release %mkrel 9
+%define release 10
 
 Summary:	Abstraction layer for providing audio and video RTP Services
 Name:		%{name}
