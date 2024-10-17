@@ -9,7 +9,7 @@ License:	GPLv2+
 Group:		Networking/Instant messaging 
 Release:	%{release}
 Source0:	http://delta.affinix.com/download/psimedia/%{name}-%{version}.tar.bz2
-URL:		http://delta.affinix.com/psimedia/
+URL:		https://delta.affinix.com/psimedia/
 Patch0:         psimedia-1.0.3-fedora-remove-v4l.patch
 Patch1:         psimedia-1.0.3-gentoo-drop-v4lsrc-gst-plugin.patch
 BuildRequires:	qt4-devel
